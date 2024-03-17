@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 loader = TextLoader("data/data.txt")
-loader2 = WebBaseLoader("https://es.wikipedia.org/wiki/Juan_Rom%C3%A1n_Riquelme")
+#loader2 = WebBaseLoader("https://promptior.ai/")
 docs = loader.load()
 
 embeddings = OpenAIEmbeddings()
