@@ -6,6 +6,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Service
 from chromedriver_py import binary_path
 from bs4 import BeautifulSoup
 import time
@@ -19,7 +20,8 @@ def get_html(url):
     chrome_options.add_argument("--lang=es")
 
     #svc = webdriver.ChromeService(executable_path=binary_path)
-    driver = webdriver.Chrome(options=chrome_options)
+    service = Service()
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     try:
         driver.get(url)
