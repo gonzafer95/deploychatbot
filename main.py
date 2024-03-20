@@ -15,24 +15,41 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def get_html(url):
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--lang=es")
+# def get_html(url):
+#     chrome_options = Options()
+#     chrome_options.add_argument("--headless")
+#     chrome_options.add_argument("--lang=es")
 
-    #svc = webdriver.ChromeService(executable_path=binary_path)
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+#     #svc = webdriver.ChromeService(executable_path=binary_path)
+#     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
-    try:
-        driver.get(url)
-        time.sleep(5)
-        html = driver.page_source
-        return html
-    finally:
-        driver.quit()
+#     try:
+#         driver.get(url)
+#         time.sleep(5)
+#         html = driver.page_source
+#         return html
+#     finally:
+#         driver.quit()
 
-htmlServices = get_html("https://promptior.ai")
-htmlAbout = get_html("https://promptior.ai/about")
+with sync_playwright() as pw:
+    browser = pw.firefox.launch(headless=True)
+    context = browser.new_context(viewport={"width": 1920, "height": 1080}, locale='es-ES')
+    page = context.new_page()
+    page.goto("https://promptior.ai")
+    time.sleep(5)
+    htmlServices=page.content()
+
+with sync_playwright() as pw:
+    browser = pw.firefox.launch(headless=True)
+    context = browser.new_context(viewport={"width": 1920, "height": 1080}, locale='es-ES')
+    page = context.new_page()
+    page.goto("https://promptior.ai/about")
+    time.sleep(5)
+    htmlAbout=page.content()
+
+
+# htmlServices = get_html("https://promptior.ai")
+# htmlAbout = get_html("https://promptior.ai/about")
 
 soupServices = BeautifulSoup(htmlServices, 'html.parser')
 service_titles = soupServices.find_all(class_='service-title')
