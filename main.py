@@ -12,6 +12,8 @@ from chromedriver_py import binary_path
 from bs4 import BeautifulSoup
 import time
 from dotenv import load_dotenv
+import nest_asyncio; nest_asyncio.apply()
+from playwright.sync_api import sync_playwright
 
 load_dotenv()
 
@@ -32,7 +34,7 @@ load_dotenv()
 #         driver.quit()
 
 with sync_playwright() as pw:
-    browser = pw.firefox.launch(headless=True)
+    browser = pw.chromium.launch(headless=True)
     context = browser.new_context(viewport={"width": 1920, "height": 1080}, locale='es-ES')
     page = context.new_page()
     page.goto("https://promptior.ai")
@@ -40,7 +42,7 @@ with sync_playwright() as pw:
     htmlServices=page.content()
 
 with sync_playwright() as pw:
-    browser = pw.firefox.launch(headless=True)
+    browser = pw.chromium.launch(headless=True)
     context = browser.new_context(viewport={"width": 1920, "height": 1080}, locale='es-ES')
     page = context.new_page()
     page.goto("https://promptior.ai/about")
