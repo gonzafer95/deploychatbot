@@ -18,8 +18,8 @@ def get_html(url):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--lang=es")
 
-    svc = webdriver.ChromeService(executable_path=binary_path)
-    driver = webdriver.Chrome(service=svc, options=chrome_options)
+    #svc = webdriver.ChromeService(executable_path=binary_path)
+    driver = webdriver.Chrome(options=chrome_options)
 
     try:
         driver.get(url)
