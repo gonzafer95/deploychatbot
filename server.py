@@ -6,7 +6,7 @@ from langserve import add_routes
 
 app = FastAPI(
   title="Chatbot Promptior",
-  version="1.0",
+  version="1.1",
   description="Un chatbot para la prueba de promptior ai engineer",
 )
 
