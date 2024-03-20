@@ -6,7 +6,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.options import Service
+from selenium.webdriver.chrome.service import Service
 from chromedriver_py import binary_path
 from bs4 import BeautifulSoup
 import time
