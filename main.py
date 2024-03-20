@@ -7,12 +7,10 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from chromedriver_py import binary_path
 from bs4 import BeautifulSoup
 import time
 from dotenv import load_dotenv
-#ChromeDriverManager().install()
 
 load_dotenv()
 
@@ -20,6 +18,8 @@ def get_html(url):
   chrome_options = Options()
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--lang=es")
+  chrome_options.add_argument("--no-sandbox")
+  chrome_options.add_argument("--disable-dev-shm-usage")
 
   #svc = webdriver.ChromeService(executable_path=binary_path)
   driver = webdriver.Chrome(service=Service(), options=chrome_options)
