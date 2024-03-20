@@ -12,7 +12,7 @@ from chromedriver_py import binary_path
 from bs4 import BeautifulSoup
 import time
 from dotenv import load_dotenv
-
+#ChromeDriverManager().install()
 
 load_dotenv()
 
@@ -22,7 +22,7 @@ def get_html(url):
   chrome_options.add_argument("--lang=es")
 
   #svc = webdriver.ChromeService(executable_path=binary_path)
-  driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+  driver = webdriver.Chrome(service=Service(), options=chrome_options)
 
   try:
     driver.get(url)
