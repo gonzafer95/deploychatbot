@@ -6,7 +6,7 @@
       "providers": ["...", "python"],
       "phases": {
         "setup": {
-          "nixPkgs": ["...", "google-chrome", "chromedriver"]
+          "nixPkgs": ["...", "google-chrome"]
         }
       }
     }
